@@ -8,7 +8,9 @@
 #define NAME "omni"
 #define PASS "mcbeeringi"
 
-#define WIFI_CFG "/wifi.txt"
+#define PUB_DIR "/public"
+#define PVT_DIR "/private"
+#define WIFI_CFG "/private/wifi.txt"
 
 #define RFEN 0
 #define RFPH 1
@@ -73,12 +75,9 @@ void setup(){
 		.onError([](ota_error_t e){neopixelWrite(NPDI,64,0,64);ws.enable(true);FSYS.begin();})
 		.begin();
 	ws.onEvent(onWS);svr.addHandler(&ws);
-	svr.onNotFound([](AsyncWebServerRequest *r){r->redirect("/");});
-	svr.serveStatic("/",FSYS,"/public").setDefaultFile("index.html");
-	svr.on("/wifi.txt",HTTP_GET,[](AsyncWebServerRequest *r){
-		if(!r->authenticate(NAME,PASS))return r->requestAuthentication();
-    r->send(FSYS,WIFI_CFG);
-  });
+	svr.onNotFound([](AsyncWebServerRequest *r){r->redirect(PUB_DIR);});
+	svr.serveStatic(PUB_DIR,FSYS,PUB_DIR).setDefaultFile("index.html");
+	svr.serveStatic(PVT_DIR,FSYS,PVT_DIR).setDefaultFile("index.html").setAuthentication(NAME,PASS);
 	svr.begin();
 
 }

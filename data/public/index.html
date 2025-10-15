@@ -54,7 +54,7 @@
 
 					].map((y,i)=>[
 						_=>(y.n[0]*x.opn[0]+y.n[1]*-x.opn[1])*x.opnl,
-						_=>Math.hypot(...y.p)*-x.opn[0]*x.opnl
+						_=>Math.hypot(...y.p)*x.opn[0]*x.opnl
 					][x.i]()+a[i])
 				),[0,0,0,0])]));
 

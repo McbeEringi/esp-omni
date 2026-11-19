@@ -41,7 +41,7 @@
 						ctx.strokeStyle=['#88f','#f88'][x.i],ctx.lineWidth=2,ctx.stroke(new Path2D(`M${[x.o[0]-x.max,x.o[1]]}L${[x.o[0]+x.max,x.o[1]]}M${[x.o[0],x.o[1]-x.max]}L${[x.o[0],x.o[1]+x.max]}`))
 					)).length?
 					(core(),clearTimeout(timer),timer=0):
-					(timer||(core(),timer=setTimeout(_=>timer=0,50)))
+					(timer||(core(),timer=setTimeout(_=>timer=0,100)))
 				)(_=>send([...Object.values(ptr).reduce((a,x)=>(
 					[
 						// {p:[-1,0],n:[0,-1]},

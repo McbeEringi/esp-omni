@@ -78,7 +78,7 @@ void setup(){
 	MDNS.begin(NAME);
 	wsh.onMessage([](AsyncWebSocket *svr,AsyncWebSocketClient *cli,const uint8_t *w,size_t l){
 		FOR_WHEEL()v[i]=*(float*)(w+4*i);
-		svr->binaryAll(w,l);
+		// svr->binaryAll(w,l);
 	});
 	wsh.onConnect([](AsyncWebSocket *ws,AsyncWebSocketClient *cli){FOR_WHEEL()v[i]=0;});
 	wsh.onDisconnect([](AsyncWebSocket *ws,uint32_t cli){FOR_WHEEL()v[i]=0;});
